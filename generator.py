@@ -1,4 +1,5 @@
 import sys
+import random
 
 '''definition of auxiliary functions'''
 def verify_type(game):
@@ -22,9 +23,20 @@ def print_game(numbers):
         print no,
     print
 
+def quina():
+    numbers = []
+    for i in range(5):
+        no1 = random.randint(0,7)
+        no2 = random.randint(0,9)
+        number = no1*10 + no2
+        if number == 0:
+            number = 80
+        numbers.append(number)
+    return numbers
+
 '''end definitions'''
 #reads how many different games user wants
-no_game = sys.argv[1]
+no_game = int(sys.argv[1])
 #reads which kind of game user wants
 type_game = sys.argv[2]
 
