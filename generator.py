@@ -23,6 +23,8 @@ def print_game(numbers):
         print no,
     print
 
+#quina game, as used in real life algarisms of ten and unity are choose
+#independently
 def quina():
     numbers = []
     for i in range(5):
@@ -31,6 +33,13 @@ def quina():
         number = no1*10 + no2
         if number == 0:
             number = 80
+        numbers.append(number)
+    return numbers
+
+def mega_sena():
+    numbers = []
+    for i in range(6):
+        number = random.randint(1,60)
         numbers.append(number)
     return numbers
 
