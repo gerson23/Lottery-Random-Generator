@@ -43,6 +43,17 @@ def mega_sena():
         numbers.append(number)
     return numbers
 
+def loto_facil():
+    numbers = []
+    x = range(15);
+    for i in x:
+        number = random.randint(1,25)
+        if number in numbers:
+            x.append(x[-1]+1)
+        else:
+            numbers.append(number)
+    return numbers
+
 '''end definitions'''
 #reads how many different games user wants
 no_game = int(sys.argv[1])
