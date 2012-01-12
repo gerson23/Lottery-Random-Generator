@@ -27,20 +27,28 @@ def print_game(numbers):
 #independently
 def quina():
     numbers = []
-    for i in range(5):
+    x = range(5)
+    for i in x:
         no1 = random.randint(0,7)
         no2 = random.randint(0,9)
         number = no1*10 + no2
         if number == 0:
             number = 80
-        numbers.append(number)
+        if number in numbers:
+            x.append(x[-1]+1)
+        else:
+            numbers.append(number)
     return numbers
 
 def mega_sena():
     numbers = []
-    for i in range(6):
+    x = range(6)
+    for i in x:
         number = random.randint(1,60)
-        numbers.append(number)
+        if number in numbers:
+            x.append(x[-1]+1)
+        else:
+            numbers.append(number)
     return numbers
 
 def loto_facil():
@@ -48,6 +56,30 @@ def loto_facil():
     x = range(15);
     for i in x:
         number = random.randint(1,25)
+        if number in numbers:
+            x.append(x[-1]+1)
+        else:
+            numbers.append(number)
+    return numbers
+
+def lotomania():
+    numbers = []
+    x = range(20)
+    for i in x:
+        no1 = random.randint(0,9)
+        no2 = random.randint(0,9)
+        number = no1*10 + no2
+        if number in numbers:
+            x.append(x[-1]+1)
+        else:
+            numbers.append(number)
+    return numbers
+
+def dupla_sena():
+    numbers = []
+    x = range(6)
+    for i in x:
+        number = random.randint(1,50)
         if number in numbers:
             x.append(x[-1]+1)
         else:
