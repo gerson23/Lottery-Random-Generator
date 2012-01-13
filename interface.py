@@ -42,6 +42,18 @@ class Interface:
     def menuitem_response(self, widget, data=None):
         return false
 
+    def about_response(self, widget, data=None):
+        dialog = gtk.Dialog("About", self.window, gtk.DIALOG_DESTROY_WITH_PARENT, None)
+        dialog.set_default_size(200, 150)
+        button = gtk.Button("OK")
+        button.connect_object("clicked", gtk.Widget.destroy, dialog)
+        dialog.action_area.pack_start(button, True, True, 0)
+        button.show()
+        label = gtk.Label("2012\nLicensed under GPLv2\n\n\nLottery Generator by gerson23")
+        dialog.vbox.pack_start(label, True, True, 0)
+        label.show()
+        dialog.show()
+
     def destroy(self, widget, data=None):
         gtk.main_quit()
 
@@ -70,7 +82,7 @@ class Interface:
         about_item = gtk.MenuItem("About")
         menu = gtk.Menu()
         menu.append(about_item)
-        about_item.connect("activate", self.menuitem_response, "About")
+        about_item.connect("activate", self.about_response, "About")
         about_item.show()
 
         help_menu = gtk.MenuItem("Help")
