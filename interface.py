@@ -15,7 +15,7 @@ class Interface:
         if self.state != "mega_sena" and data == "mega_sena":
             self.string += "Luck numbers for MEGA-SENA:\t"
         elif self.state != "quina" and data == "quina":
-            self.string += "Luck numbers for QUINA:\t\t"
+            self.string += "Luck numbers for QUINA:\t\t\t"
         elif self.state != "dupla_sena" and data == "dupla_sena":
             self.string += "Luck numbers for DUPLA-SENA:\t"
         elif self.state!= "loto_facil" and data == "loto_facil":
@@ -44,18 +44,36 @@ class Interface:
 
     def about_response(self, widget, data=None):
         dialog = gtk.Dialog("About", self.window, gtk.DIALOG_DESTROY_WITH_PARENT, None)
-        dialog.set_default_size(200, 150)
+        #dialog.set_default_size(200, 150)
+        dialog.set_resizable(False)
         button = gtk.Button("OK")
         button.connect_object("clicked", gtk.Widget.destroy, dialog)
         dialog.action_area.pack_start(button, True, True, 0)
         button.show()
-        label = gtk.Label("2012\nLicensed under GPLv2\n\n\nLottery Generator by gerson23")
+        label = gtk.Label("2012 - Lottery Generator v0.1 Pre-Alpha\nLicensed under GPLv2\n\n\nMade possible by gerson23")
         dialog.vbox.pack_start(label, True, True, 0)
         label.show()
         dialog.show()
-
+ 
     def destroy(self, widget, data=None):
-        gtk.main_quit()
+        gtk.main_quit()   
+
+    def ok_save(self, widget, data=None):
+        filename = self.file_sel.get_filename()
+        gtk.Widget.destroy(self.file_sel)
+        file_no = open(filename, "w")
+        file_no.write("Games generated using Lottery Generator v0.1\n")
+        file_no.write(self.string)
+        file_no.close()
+    
+    def save_response(self, widget, data=None):
+        self.file_sel = gtk.FileSelection("Save as...")
+        self.file_sel.connect("destroy", gtk.Widget.destroy)
+        self.file_sel.ok_button.connect("clicked", self.ok_save)
+        self.file_sel.cancel_button.connect_object("clicked", gtk.Widget.destroy, self.file_sel)
+        self.file_sel.set_filename("~/Games/games.txt")
+        self.file_sel.show()
+
 
     def __init__(self):
         self.state = ""
@@ -70,7 +88,7 @@ class Interface:
         quit_item = gtk.MenuItem("Quit")
         menu.append(save_item)
         menu.append(quit_item)
-        save_item.connect("activate", self.menuitem_response, "Save")
+        save_item.connect("activate", self.save_response, "Save")
         quit_item.connect("activate", self.destroy, "Quit")
         save_item.show()
         quit_item.show()
