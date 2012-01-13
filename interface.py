@@ -18,9 +18,9 @@ class Interface:
             self.string += "Luck numbers for QUINA:\t\t"
         elif self.state != "dupla_sena" and data == "dupla_sena":
             self.string += "Luck numbers for DUPLA-SENA:\t"
-        elif self.string != "loto_facil" and data == "loto_facil":
+        elif self.state!= "loto_facil" and data == "loto_facil":
             self.string += "Luck numbers for LOTO-FACIL:\t"
-        elif self.string != "lotomania" and data == "lotomania":
+        elif self.state!= "lotomania" and data == "lotomania":
             self.string += "Luck numbers for LOTOMANIA:\t"
         else:
             self.string += "\t\t\t\t\t\t\t\t\t"
@@ -53,9 +53,40 @@ class Interface:
         self.window.resize(500, 300)
         self.window.set_title("Lottery Generator")
 
+        menu = gtk.Menu()
+        save_item = gtk.MenuItem("Save")
+        quit_item = gtk.MenuItem("Quit")
+        menu.append(save_item)
+        menu.append(quit_item)
+        save_item.connect("activate", self.menuitem_response, "Save")
+        quit_item.connect("activate", self.destroy, "Quit")
+        save_item.show()
+        quit_item.show()
+
+        root_menu = gtk.MenuItem("File")
+        root_menu.show()
+        root_menu.set_submenu(menu)
+
+        about_item = gtk.MenuItem("About")
+        menu = gtk.Menu()
+        menu.append(about_item)
+        about_item.connect("activate", self.menuitem_response, "About")
+        about_item.show()
+
+        help_menu = gtk.MenuItem("Help")
+        help_menu.show()
+        help_menu.set_submenu(menu)
+        
+        menu_bar = gtk.MenuBar()
+
         box1 = gtk.VBox(False,0)
         self.window.add(box1)
         box1.show()
+
+        box1.pack_start(menu_bar, False, False, 2)
+        menu_bar.show()
+        menu_bar.append(root_menu)
+        menu_bar.append(help_menu)
 
         box2 = gtk.VBox(False,10)
         box1.pack_start(box2, True, True, 0)
@@ -66,6 +97,7 @@ class Interface:
         self.textbuffer = self.textview.get_buffer()
         sw.add(self.textview)
         sw.show()
+        self.textview.set_editable(False)
         self.textview.show()
 
         box2.pack_start(sw)
@@ -116,28 +148,6 @@ class Interface:
         vbox.pack_start(self.button, False, False, 0)
         self.button.show()
         '''end buttons'''
-
-        '''menu start here
-        file_menu = gtk.Menu()
-
-        save_item = gtk.MenuItem("Save")
-        quit_item = gtk.MenuItem("Quit")
-
-        file_menu.append(save_item)
-        file_menu.append(quit_item)
-        save_item.connect_object("activate", self.menuitem_response, "self.save")
-        quit_item.connect_object("activate", gtk.Widget.destroy, "self.destroy")
-
-        save_item.show()
-        quit_item.show()
-
-        menu_bar = gtk.MenuBar()
-        self.window.add(menu_bar)
-        menu_bar.show()
-        file_item = gtk.MenuItem("File")
-        file_item.show()
-        file_item.set_submenu(file_item)
-        menu_bar.append(file_menu)'''
 
         self.window.show()
 
