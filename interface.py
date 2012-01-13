@@ -39,12 +39,8 @@ class Interface:
         print "delete event occurred"
         return false
 
-    def menuitem_response(self, widget, data=None):
-        return false
-
     def about_response(self, widget, data=None):
         dialog = gtk.Dialog("About", self.window, gtk.DIALOG_DESTROY_WITH_PARENT, None)
-        #dialog.set_default_size(200, 150)
         dialog.set_resizable(False)
         button = gtk.Button("OK")
         button.connect_object("clicked", gtk.Widget.destroy, dialog)
@@ -186,5 +182,5 @@ class Interface:
 
 
 if __name__ == "__main__":
-    hello = Interface()
-    hello.main()
+    interface = Interface()
+    interface.main()
