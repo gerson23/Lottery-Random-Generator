@@ -64,7 +64,7 @@ def loto_facil():
 
 def lotomania():
     numbers = []
-    x = range(20)
+    x = range(50)
     for i in x:
         no1 = random.randint(0,9)
         no2 = random.randint(0,9)
@@ -87,19 +87,21 @@ def dupla_sena():
     return numbers
 
 '''end definitions'''
-#reads how many different games user wants
-no_game = int(sys.argv[1])
-#reads which kind of game user wants
-type_game = sys.argv[2]
 
-if verify_type(type_game):
-    print "Wrong time of game passed. Lookup the README for usage"
-    sys.exit(1)
+if __name__ == "__main__":
+    #reads how many different games user wants
+    no_game = int(sys.argv[1])
+    #reads which kind of game user wants
+    type_game = sys.argv[2]
 
-#loop as many times as passed by user
-for i in range(no_game):
-    millions_numbers = locals()[type_game]()
-    print "This is your #%d game"%(i+1)
-    print_game(millions_numbers)
+    if verify_type(type_game):
+        print "Wrong time of game passed. Lookup the README for usage"
+        sys.exit(1)
 
-print "Good luck!"
+    #loop as many times as passed by user
+    for i in range(no_game):
+        millions_numbers = locals()[type_game]()
+        print "This is your #%d game"%(i+1)
+        print_game(millions_numbers)
+
+    print "Good luck!"
