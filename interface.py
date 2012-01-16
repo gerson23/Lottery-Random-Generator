@@ -15,7 +15,7 @@ class Interface:
         if self.state != "mega_sena" and data == "mega_sena":
             self.string += "Luck numbers for MEGA-SENA:\t"
         elif self.state != "quina" and data == "quina":
-            self.string += "Luck numbers for QUINA:\t\t\t"
+            self.string += "Luck numbers for QUINA:\t\t"
         elif self.state != "dupla_sena" and data == "dupla_sena":
             self.string += "Luck numbers for DUPLA-SENA:\t"
         elif self.state!= "loto_facil" and data == "loto_facil":
@@ -24,8 +24,12 @@ class Interface:
             self.string += "Luck numbers for LOTOMANIA:\t"
         else:
             self.string += "\t\t\t\t\t\t\t\t\t"
+        i=0
         for no in numbers:
+            i+=1
             self.string = self.string + str(no) + " "   
+            if i == 18 or i == 45:
+                self.string += '\n'
         self.textbuffer.set_text(self.string)
         self.string = self.string + "\n"
         self.state = data
@@ -78,6 +82,8 @@ class Interface:
         self.window.set_border_width(0)
         self.window.resize(500, 300)
         self.window.set_title("Lottery Generator")
+        self.window.set_position(gtk.WIN_POS_CENTER)
+        self.window.set_icon_from_file("favicon.ico")
 
         menu = gtk.Menu()
         save_item = gtk.MenuItem("Save")
