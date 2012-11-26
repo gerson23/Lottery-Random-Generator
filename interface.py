@@ -85,6 +85,7 @@ class Interface:
         self.window.set_position(gtk.WIN_POS_CENTER)
         self.window.set_icon_from_file("favicon.ico")
 
+        '''menu starts here'''
         menu = gtk.Menu()
         save_item = gtk.MenuItem("Save")
         quit_item = gtk.MenuItem("Quit")
@@ -110,6 +111,7 @@ class Interface:
         help_menu.set_submenu(menu)
         
         menu_bar = gtk.MenuBar()
+        '''menu end'''
 
         box1 = gtk.VBox(False,0)
         self.window.add(box1)

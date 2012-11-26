@@ -1,12 +1,8 @@
 Lottery Generator v0.1 Pre-Alpha.
 
-1. STARTING UP
+STARTING UP
+===========
 
     For a while, if you want use Lottery Generator you must have installed on your machine:
         - Python 2.6.x
         - GTK+ and PyGTK
-
-    Checked this pre-reqs, you must follow these steps:
-        1- Descompact the files into your area
-        2- % chmod +x interface.py
-        3- % ./interface.py
